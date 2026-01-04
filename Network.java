@@ -68,6 +68,14 @@ public class Network {
         if (getUser(name1) == null || getUser(name2) == null) {
             return false;
         }
+
+        if (name1.equals(name2)) {
+        return false;
+        }
+
+        if (getUser(name1).follows(name2)) {
+        return false;
+        }
         getUser(name1).addFollowee(name2);
         return true;
 
@@ -139,7 +147,7 @@ public class Network {
 
     // Returns a textual description of all the users in this network, and who they follow.
     public String toString() {
-        String ans = "";
+        String ans = "Network:";
     
         for (int i = 0; i < userCount; i++) {
             ans = ans + users[i].toString() + "\n";
